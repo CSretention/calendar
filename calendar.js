@@ -14,16 +14,16 @@ document.addEventListener('DOMContentLoaded', function() {
     eventClick: function(info) {
       // Fill modal with event data
       document.getElementById('eventModalLabel').textContent = info.event.title;
-      document.getElementById('eventModalDate').textContent = info.event.extendedProps.display_date || '';
-      document.getElementById('eventModalLocation').textContent = info.event.location || '';
-      document.getElementById('eventModalDescription').textContent = info.event.extendedProps.description || '';
+      document.getElementById('eventModalDate').textContent = info.event.start.toLocaleString();
+      document.getElementById('eventModalLocation').textContent = info.event.extendedProps.location || '';
+      document.getElementById('eventModalDescription').textContent = info.event.extendedProps.info || '';
       document.getElementById('eventModalLink').href = info.event.url || '#';
 
       // Show modal
       var eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
       eventModal.show();
 
-      // Prevent default click behavior (so link doesn't navigate)
+      // Prevent default click behavior
       info.jsEvent.preventDefault();
     }
   });
