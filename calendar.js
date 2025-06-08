@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
     },
-    events: 'https://slate.clarkstate.edu/portal/calendar/method/calendar-feed.json',
+    events: 'https://slate-calendar-proxy.retention.workers.dev/',
 
     eventClick: function(info) {
       // Fill modal with event data
