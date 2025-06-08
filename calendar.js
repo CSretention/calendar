@@ -9,16 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
     },
-    events: [
-      {
-        title: 'Example Event A',
-        start: '2025-06-10'
-      },
-      {
-        title: 'Example Event B',
-        start: '2025-06-15T14:00:00'
-      }
-    ]
+    events: 'https://slate.clarkstate.edu/portal/calendar-feed.json'  // <--- your live feed!
   });
 
   calendar.render();
