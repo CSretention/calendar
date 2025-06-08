@@ -3,32 +3,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
-    themeSystem: 'bootstrap5',
+    themeSystem: 'standard',
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
     },
     events: 'https://slate.clarkstate.edu/portal/calendar/method/calendar-feed.json',
-    
-    eventClick: function(info) {
-      // Set modal content:
-      document.getElementById('eventModalLabel').textContent = info.event.title;
-      document.getElementById('eventDescription').textContent = info.event.extendedProps.description || '';
-      document.getElementById('eventLocation').textContent = info.event.extendedProps.location ? 'Location: ' + info.event.extendedProps.location : '';
-      document.getElementById('eventTime').textContent = 
-        'Start: ' + info.event.start.toLocaleString() + 
-        (info.event.end ? ' | End: ' + info.event.end.toLocaleString() : '');
-      document.getElementById('eventLink').href = info.event.extendedProps.url || '#';
 
-      // Show modal:
+    eventClick: function(info) {
+      // Fill modal with event data
+      document.getElementById('eventModalLabel').textContent = info.event.title;
+      document.getElementById('eventModalDate').textContent = info.event.extendedProps.display_date || '';
+      document.getElementById('eventModalLocation').textContent = info.event.location || '';
+      document.getElementById('eventModalDescription').textContent = info.event.extendedProps.description || '';
+      document.getElementById('eventModalLink').href = info.event.url || '#';
+
+      // Show modal
       var eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
       eventModal.show();
 
-      // Prevent default browser nav:
+      // Prevent default click behavior (so link doesn't navigate)
       info.jsEvent.preventDefault();
     }
-
   });
 
   calendar.render();
