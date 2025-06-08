@@ -1,53 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8' />
-  <title>Events Calendar - FullCalendar + Slate JSON Feed</title>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta charset="utf-8" />
+  <title>Clark State Retention Calendar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- FullCalendar CSS -->
-  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css' rel='stylesheet' />
-  <link href='calendar.css' rel='stylesheet' />
+  <!-- FullCalendar CSS (SAFE, no CORB) -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet" />
 
-  <!-- Optional: Bootstrap for modal -->
-  <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet' />
+  <!-- Bootstrap CSS (for modals) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 20px auto;
+      padding: 0;
+      font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+      font-size: 14px;
+      background-color: #f4f4f4;
+      max-width: 1100px;
+    }
+    #calendar {
+      padding: 10px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
-
 <body>
 
-  <h1 style="text-align:center;">Events Calendar</h1>
+<h1 style="text-align:center;">Events Calendar</h1>
 
-  <div id='calendar'></div>
+<div id="calendar"></div>
 
-  <!-- Modal for popup -->
-  <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="eventModalLabel">Event Details</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p><strong>Date:</strong> <span id="eventModalDate"></span></p>
-          <p><strong>Location:</strong> <span id="eventModalLocation"></span></p>
-          <p><strong>Description:</strong></p>
-          <p id="eventModalDescription"></p>
-        </div>
-        <div class="modal-footer">
-          <a id="eventModalLink" href="#" target="_blank" class="btn btn-primary">View Full Event</a>
-        </div>
+<!-- Modal -->
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eventModalLabel">Event Title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Date:</strong> <span id="eventModalDate"></span></p>
+        <p><strong>Location:</strong> <span id="eventModalLocation"></span></p>
+        <p><strong>Description:</strong> <span id="eventModalDescription"></span></p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" id="eventModalLink" target="_blank" class="btn btn-primary">View Event</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- FullCalendar JS -->
-  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+<!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
 
-  <!-- Bootstrap JS for modal -->
-  <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
+<!-- Bootstrap JS (for modals) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Your calendar JS -->
-  <script src='calendar.js'></script>
+<!-- Your Calendar JS -->
+<script src="calendar.js"></script>
 
 </body>
 </html>
