@@ -1,19 +1,15 @@
 body {
+  margin: 20px;
+  font-family: Arial, sans-serif;
   background-color: #f9f9f9;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 #calendar {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
 
-.fc-event {
-  background-color: #003763 !important;
-  color: white !important;
-  border-radius: 6px !important;
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
 }
