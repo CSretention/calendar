@@ -1,0 +1,274 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title></title>
+    {% if events.size > 0 %}
+    <style type="text/css">/*<![CDATA[*/.canva-event-scope .canva-event-card {
+        display: flex;
+        gap: 30px;
+        font-family: Roboto, sans-serif;
+        max-width: 900px;
+        margin: 24px auto;
+        background: #fff;
+        overflow: hidden;
+        flex-wrap: wrap;
+      }
+      .canva-event-scope .canva-event-left {
+        min-width: 160px;
+        max-width: 200px;
+        flex: 0 0 160px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0 15px 0;
+      }
+      .canva-event-scope .canva-event-year {
+        background: #f4b400;
+        color: #003763;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+        padding: 5px 0;
+        width: 100%;
+        border-radius: 20px 20px 0 0;
+      }
+      .canva-event-scope .canva-event-date {
+        background: #003763;
+        color: #fff;
+        text-align: center;
+        padding: 15px 0;
+        width: 100%;
+        border-radius: 0 0 20px 20px;
+      }
+      .canva-event-scope .canva-event-weekday {
+        font-size: 16px;
+      }
+      .canva-event-scope .canva-event-month {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .canva-event-scope .canva-event-day {
+        font-size: 36px;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+/* Base Info Section */
+.canva-event-scope .canva-event-info {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  text-align: center;
+  color: #003763;
+}
+
+/* Uniform Icon Sizing and Position */
+.canva-event-scope .canva-event-time .canva-icon,
+.canva-event-scope .canva-event-location .canva-icon {
+  position: absolute;
+  top: 0.1em;   /* tweak for vertical centering */
+  left: 0;
+  width: 20px;  /* consistent size */
+  height: 20px;
+  color: #f4b400;
+}
+
+/* Shared Alignment for Time and Location */
+.canva-event-scope .canva-event-time,
+.canva-event-scope .canva-event-location {
+  position: relative;
+  padding-left: 32px; /* space for icons */
+  line-height: 1.4em;
+  font-size: 14px;
+  color: #003763;
+  text-align: left;   /* override center so icon padding works */
+}
+
+/* Spacing between rows */
+.canva-event-scope .canva-event-info > div:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+
+      .canva-event-scope .canva-event-reg {
+        border: 2px solid #003763;
+        border-radius: 20px;
+        padding: 3px 12px;
+        display: inline-block;
+        margin: 10px auto;
+        color: #003763;
+        font-weight: bold;
+      }
+      .canva-event-scope .canva-event-right {
+        flex: 1;
+        padding: 24px 24px 24px 0;
+      }
+      .canva-event-scope .canva-event-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0 0 10px;
+        color: #003763;
+      }
+      .canva-event-scope .canva-event-body {
+        font-size: 16px;
+        margin: 0 0 15px;
+        line-height: 1.45em;
+        color: #222;
+      }
+      .canva-event-scope .canva-event-tags {
+        font-size: 14px;
+        margin-bottom: 20px;
+        color: #003763;
+      }
+      .canva-event-scope .canva-event-tags strong {
+        margin-right: 5px;
+      }
+      .canva-event-scope .canva-tag {
+        border: 2px solid #003763;
+        border-radius: 20px;
+        padding: 3px 12px;
+        margin: 0 5px 5px 0;
+        display: inline-block;
+        color: #003763;
+      }
+      /* REGISTER BUTTON OVERRIDE */
+      .canva-event-scope .canva-register-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px;
+        background: #f4b400 !important;
+        color: #003763 !important;
+        text-decoration: none !important;
+        font-size: 16px !important;
+        font-weight: bold !important;
+        padding: 8px 20px !important;
+        border-radius: 30px !important;
+        border: none !important;
+        margin-top: 8px;
+        transition: background 0.2s, color 0.2s;
+        cursor: pointer;
+      }
+      .canva-event-scope .canva-register-btn:hover {
+        background: #ffd633 !important;
+        color: #102236 !important;
+      }
+      .canva-event-scope .canva-arrow {
+        width: 18px;
+        height: 18px;
+      }
+      @media (max-width: 700px) {
+        .canva-event-scope .canva-event-card {
+          flex-direction: column;
+          min-width: 0;
+        }
+        .canva-event-scope .canva-event-left,
+        .canva-event-scope .canva-event-right {
+          max-width: 100%;
+          flex: 1 1 100%;
+          padding: 0 12px;
+        }
+        .canva-event-scope .canva-event-right {
+          padding: 20px 5vw 20px 5vw;
+        }
+      }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*]]>*/
+    </style>
+    <script>/*<![CDATA[*/      
+      $("a.fetch").on("click", function(){
+        var page = $(this).data("page");
+        var qs = FW.decodeFormValues(location.search.substring(1));delete qs.cmd;
+        FW.Lazy.Fetch("/portal/data/table?portal_id={{portal_id}}&part={{part_id}}&page=" + page + "&" + FW.encodeFormValues(qs), $("#{{part_id}}_results"));
+        return false;
+      });
+      
+    /*]]>*/</script>{% endif %}
+  </head>
+  <body>
+    {% if events.size > 0 %}
+    <div class="canva-event-scope">
+      <span style="float: left;">{% if show_prev == '1' %}<a class="fetch" data-page="{{page | minus:1}}" href="//">Prev</a>{% endif %}</span><span style="float: right;">{% if show_next == '1' %}<a class="fetch" data-page="{{page | plus:1}}" href="//">Next</a>{% endif %}</span>{% for event in events limit:5 %}
+      <section class="canva-event-card">
+      <aside class="canva-event-left">
+      <div class="canva-event-year">
+        {{event.year}}
+      </div>
+
+      <div class="canva-event-date">
+        <div class="canva-event-weekday">
+          {{event.weekday}}
+        </div>
+
+        <div class="canva-event-month">
+          {{event.month}}
+        </div>
+
+        <div class="canva-event-day">
+          {{event.day | date: 'd'}}
+        </div>
+      </div>
+
+      <div class="canva-event-info">
+        <div class="canva-event-time">
+          <svg aria-hidden="true" class="canva-icon" viewbox="0 0 24 24"><circle cx="12" cy="12" fill="none" r="10" stroke="currentColor" stroke-width="2"></circle><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="2"></path></svg><time datetime="{{ event.start_iso }}">{{event.start}} – {{event.end}}</time>
+        </div>
+
+        <div class="canva-event-location" style="text-align: left;">
+          <svg aria-hidden="true" class="canva-icon" viewbox="0 0 24 24"><path d="M12 21c-4-4.5-7-7.5-7-11a7 7 0 0 1 14 0c0 3.5-3 6.5-7 11z" fill="none" stroke="currentColor" stroke-width="2"></path><circle cx="12" cy="10" fill="currentColor" r="2"></circle></svg>{% if event.location_type == "Campus" %}<strong>Clark State College<br />
+          {{event.campus}}</strong><br />
+          {{event.building}}, {{event.room}}{% elseif event.location_type == "Off-Site" %}<strong>{{event.location_name}}</strong><br />
+          {{event.city}}, {{event.state}}{% elseif event.location_type == "Online" %}<a href="{{ event.join_link }}"><strong>Online</strong></a>{% endif %}
+        </div>
+      </div>
+      </aside>
+
+      <div class="canva-event-right">
+        <h2 class="canva-event-title">
+          {{event.title}}
+        </h2>
+
+        <div class="canva-event-reg">
+          {% if event.publicity == "Open to Registrants" %}Registration Required{% else %}Open to All{% endif %}
+        </div>
+
+        <p class="canva-event-body">
+          {{event.description}}
+        </p>
+
+        <div class="canva-event-tags">
+          <div>
+            <strong>Topics:</strong>{% for topic in event.topics %} {% assign subjects = topic.subjects | split: ',' %} {% for subject in subjects %}<span class="canva-tag">{{subject | strip}}</span>{% endfor %}{% endfor %}
+          </div>
+
+          <div>
+            <strong>Audience:</strong>{% for audience in event.audiences %} {% assign audience_list = audience.people | split: ',' %} {% for person in audience_list %}<span class="canva-tag">{{person | strip}}</span>{% endfor %}{% endfor %}
+          </div>
+
+          <div>
+            <strong>Perks:</strong>{% for perk in event.perks %} {% assign materials_list = perk.materials | split: ',' %} {% for material in materials_list %}<span class="canva-tag">{{material | strip}}</span>{% endfor %}{% endfor %}
+          </div>
+        </div>
+        <a class="canva-register-btn" href="{{ event.url }}">Register for Event <svg aria-hidden="true" class="canva-arrow" viewbox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg></a>
+      </div>
+      </section>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </body>
+</html>
