@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <div class="filter-scope">
+      <form class="event-filter-sidebar" id="event-filter-form">
+      <div class="filter-card">
+        <h5 class="filter-card-title">
+          Search
+        </h5>
+
+        <div class="input-group">
+          <span class="input-group-text"><svg aria-hidden="true" height="18" viewbox="0 0 24 24" width="18"><circle cx="11" cy="11" fill="none" r="8" stroke="#003763" stroke-width="2"></circle><path d="M21 21l-4.3-4.3" stroke="#003763" stroke-width="2"></path></svg></span><input class="form-control" name="search" placeholder="Search events" type="text" />
+        </div>
+      </div>
+
+      <div class="filter-card">
+        <h5 class="filter-card-title">
+          Date
+        </h5>
+        <input class="form-control" name="date" type="date" />
+      </div>
+
+      <div class="filter-card">
+        <h5 class="filter-card-title">
+          Tags
+        </h5>
+
+        <div class="form-check-group">
+          {% for tag in all_tags %}
+          <div class="form-check">
+            <input class="form-check-input" id="tag_{{forloop.index}}" name="tags" type="checkbox" value="{{tag}}" /><label class="form-check-label" for="tag_{{forloop.index}}">{{tag}}</label>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="filter-card">
+        <h5 class="filter-card-title">
+          Location
+        </h5>
+
+        <div class="form-check-group">
+          {% for location in all_locations %}
+          <div class="form-check">
+            <input class="form-check-input" id="loc_{{forloop.index}}" name="locations" type="checkbox" value="{{location}}" /><label class="form-check-label" for="loc_{{forloop.index}}">{{location}}</label>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="d-grid">
+        <button class="btn btn-filter-apply" type="submit">Apply Filters</button><button class="btn btn-filter-clear" onclick="document.getElementById('event-filter-form').reset();" type="button">Clear all</button>
+      </div>
+      </form>
+    </div>
+    <style type="text/css">/*<![CDATA[*//* ==== FILTER SCOPED STYLES ==== */
+.filter-scope .event-filter-sidebar {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 30px 0 rgba(44, 81, 153, 0.11);
+  max-width: 320px;
+  padding: 26px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.filter-scope .filter-card { border-bottom: 1px solid #ecf0f8; padding-bottom: 16px; margin-bottom: 16px; }
+.filter-scope .filter-card:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.filter-scope .filter-card-title { font-size: 1.1rem; font-weight: 700; color: #29335c; margin-bottom: 9px; }
+.filter-scope .input-group { display: flex; align-items: center; border: 1px solid #ccd7ea; border-radius: 8px; background: #f7fafd; overflow: hidden; }
+.filter-scope .input-group-text { padding: 8px 12px; background: #fff; border: none; display: flex; align-items: center; }
+.filter-scope .form-control { border: none; outline: none; background: transparent; flex: 1; padding: 8px 10px; font-size: 16px; color: #24272c; }
+.filter-scope .form-check-group { display: flex; flex-direction: column; gap: 7px; }
+.filter-scope .form-check { display: flex; align-items: center; gap: 0.5em; }
+.filter-scope .form-check-input[type="checkbox"] { accent-color: #f3a712; width: 18px; height: 18px; }
+.filter-scope .form-check-label { flex: 1; font-size: 15px; color: #29335c; }
+.filter-scope .d-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.filter-scope .btn { padding: 10px 0; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; }
+.filter-scope .btn-filter-apply { background: #003763; color: #fff; transition: background 0.15s; }
+.filter-scope .btn-filter-apply:hover { background: #355986; }
+.filter-scope .btn-filter-clear { background: #f7fafd; color: #29335c; border: 1px solid #ccd7ea; }
+.filter-scope .btn-filter-clear:hover { background: #ecf0f8; }
+    /*]]>*/
+    </style>
+    <script>/*<![CDATA[*/document.getElementById('event-filter-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  FW.Portal.reload(); // Slate portal refresh
+});/*]]>*/</script>
+  </body>
+</html>
